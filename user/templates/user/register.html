@@ -13,6 +13,13 @@
             <div class="error-messages">{{ form.full_name.errors }}</div>
         {% endif %}
     </div>
+    <div class="form-group">
+        <label for="{{ form.date_of_birth.id_for_label }}">{{ form.date_of_birth.label }}</label>
+        {{ form.date_of_birth }}
+        {% if form.date_of_birth.errors %}
+            <div class="error-messages">{{ form.date_of_birth.errors }}</div>
+        {% endif %}
+    </div>
 
     <div class="form-group">
         <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>

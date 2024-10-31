@@ -4,7 +4,6 @@ from django.contrib.auth import logout
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CustomUserCreationForm
 from django.contrib import messages
-from .forms import RequestForm
 from .models import Request
 
 def user_login(request):
