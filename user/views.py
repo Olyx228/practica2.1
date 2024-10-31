@@ -58,30 +58,3 @@ def profile(request):
         'user_requests': user_requests,
         'selected_status': status
     })
-
-
-def create_request(request):
-    if request.method == 'POST':
-        form = RequestForm(request.POST, request.FILES)
-        if form.is_valid():
-            request_instance = form.save(commit=False)
-            request_instance.user = request.user
-            request_instance.save()
-            return redirect('profile')
-    else:
-        form = RequestForm()
-
-    return render(request, 'user/create_request.html', {
-        'form': form
-    })
-
-def delete_request(request, request_id):
-    request_instance = get_object_or_404(Request, id=request_id, user=request.user)
-
-    if request_instance.status == 'new':
-        request_instance.delete()
-        messages.success(request, 'Заявка успешно удалена.')
-    else:
-        messages.error(request, 'Ошибка: заявку можно удалить только в статусе "Новая".')
-
-    return redirect('profile')
